@@ -8,6 +8,7 @@ public class Square {
     System.out.println("9 root square = " + floorSqrt(9));
     System.out.println("11 root square = " + floorSqrt(11));
     System.out.println("16 root square = " + floorSqrt(16));
+    System.out.println("2147483647 root square = " + floorSqrt(2147483647));
   }
 
   public static int sqrt(int a) {
@@ -28,16 +29,16 @@ public class Square {
       return a;
     }
 
-    int start = 1;
-    int end = a;
-    int answer = 0;
+    long start = 1;
+    long end = a;
+    long answer = 0;
 
     while (start <= end) {
-      int middle = (start + end) / 2;
+      long middle = (start + end) / 2;
 
       // Perfect square
       if (middle * middle == a) {
-        return middle;
+        return (int) middle;
       }
 
       if (middle * middle < a) {
@@ -47,6 +48,6 @@ public class Square {
         end = middle - 1;
       }
     }
-    return answer;
+    return (int) answer;
   }
 }
