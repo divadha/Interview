@@ -20,20 +20,14 @@ public class ReverseLinkedList {
   }
 
   public static ListNode add(List<Integer> list) {
-    ListNode head = null;
-    ListNode node;
-    ListNode prev = null;
+    ListNode head = new ListNode(-1);
+    ListNode prev = head;
     for (Integer number : list) {
-
-      node = new ListNode(number);
-      if (prev != null) {
-        prev.next = node;
-      } else {
-        head = node;
-      }
-      prev = node;
+      ListNode current = new ListNode(number);
+      prev.next = current;
+      prev = current;
     }
-    return head;
+    return head.next;
   }
 
   public static void print(ListNode list) {
@@ -45,74 +39,54 @@ public class ReverseLinkedList {
   }
 
   public static void main(String[] args) {
-    ListNode list = add(Arrays.asList(3, 5));
+
+    // 1 2 3 4 5
+    // 5 4 3 2 1
+    // 4 3 2 1 5 : 1 : 4
+    // 1 4 3 2 5 : 2 : 4
+
+
+
+    ListNode list = add(Arrays.asList(1, 2, 3, 4, 5));
     print(list);
-    list = reverseBetween(list, 1, 2);
+    list = reverseBetween(list, 2, 4);
     print(list);
   }
 
   public static ListNode reverseBetween(ListNode head, int m, int n) {
-    // 1 2 3 4 5
-    // m = 2 n = 4
-    ListNode left = null;
-    ListNode middle = head;
-    ListNode right = null;
-
+    ListNode prev = null;
     ListNode current = head;
-    ListNode priv = head;
     int index = 0;
     while (current != null) {
       index++;
-      if (index == m && m != 1) {
-        left = head;
-        middle = current;
-        priv.next = null;
+      if (index == m) {
+        if (prev != null) {
+          prev.next = reverse(current, n - m + 1);
+        } else {
+          head = reverse(current, n - m + 1);
+        }
+        break;
       }
-      if (index == n) {
-        right = current.next;
-        current.next = null;
-      }
-      priv = current;
-      current = current.next;
-    }
-
-    middle = reverse(middle);
-    return add(left, middle, right);
-  }
-
-  public static ListNode add(ListNode left, ListNode middle, ListNode right) {
-    ListNode current = left;
-    ListNode prev = left;
-    while (current != null) {
       prev = current;
       current = current.next;
     }
 
-    if (prev != null) {
-      prev.next = middle;
-    } else {
-      left = middle;
-    }
-
-    current = middle;
-    while (current != null) {
-      prev = current;
-      current = current.next;
-    }
-    prev.next = right;
-    return left;
+    return head;
   }
 
-  public static ListNode reverse(ListNode head) {
+  public static ListNode reverse(ListNode head, int length) {
     ListNode prev = null;
     ListNode current = head;
     ListNode next = null;
-
-    while (current != null) {
+    while (current != null && length > 0) {
       next = current.next;
       current.next = prev;
       prev = current;
       current = next;
+      length--;
+    }
+    if (current != null) {
+      head.next = current;
     }
     return prev;
   }
