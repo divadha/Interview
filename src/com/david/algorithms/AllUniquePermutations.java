@@ -16,7 +16,7 @@ public class AllUniquePermutations {
     int[][] matrix = new int[list.size()][a.length];
     int i = 0;
     for (int[] array : list) {
-      //matrix[i++] = array;
+      // matrix[i++] = array;
       System.out.println(Arrays.toString(array));
     }
   }
