@@ -8,6 +8,7 @@ public class LetterPhone {
 
   public static void main(String[] args) {
     Map<Character, String> map;
+    System.out.println(letterCombinations("23"));
   }
 
   static Map<Character, String> map = new HashMap<>();
@@ -25,7 +26,7 @@ public class LetterPhone {
     map.put('9', "wxyz");
   }
 
-  public ArrayList<String> letterCombinations(String A) {
+  public static ArrayList<String> letterCombinations(String A) {
     ArrayList<String> result = new ArrayList<>();
     if (A.isEmpty()) {
       return result;
