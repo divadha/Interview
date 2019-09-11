@@ -9,6 +9,8 @@ public class MergeSort {
     System.out.println(Arrays.toString(array));
     mergeSort(array, 0, array.length -1);
     System.out.println(Arrays.toString(array));
+
+    "".indexOf("");
   }
 
   public static void mergeSort(int[] array, int left, int right) {

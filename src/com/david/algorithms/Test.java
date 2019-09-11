@@ -12,6 +12,8 @@ public class Test {
     list.add("2");
     list.add("3");
     list.remove("3");
+    String[] array = new String[]{"Hello" ,"how", "are", "you"};
+    System.out.println(String.join(" ", array));
     for (String item : list) {
       System.out.println(item);
     }
